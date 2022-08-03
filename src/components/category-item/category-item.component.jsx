@@ -1,6 +1,6 @@
-import "./menu-item.style.scss";
+import './category-item.styles.scss';
 
-const MenuItem = ({ category }) => {
+const CategoryItem = ({ category }) => {
   const { imageUrl, title } = category;
   return (
     <div className='category-container'>
@@ -11,11 +11,11 @@ const MenuItem = ({ category }) => {
         }}
       />
       <div className='category-body-container'>
-        <h2>{title.toUpperCase()}</h2>
+        <h2>{title}</h2>
         <p>Shop Now</p>
       </div>
     </div>
   );
 };
 
-export default MenuItem
+export default CategoryItem;
