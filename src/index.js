@@ -3,23 +3,25 @@ import ReactDOM from "react-dom/client";
 import "./index.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { Elements } from "@stripe/react-stripe-js";
+import { PersistGate } from "redux-persist/integration/react";
 import { BrowserRouter } from "react-router-dom";
-import { UserProvider } from "./contexts/user.context";
-import { CategoriesProvider } from "./contexts/categories.context";
-import { CartProvider } from "./contexts/cart.context";
-
+import { Provider } from "react-redux";
+import { store } from "./store/store";
+import { persistor } from "./store/store";
+import { stripePromise } from "./utils/stripe/stripe.utils";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <UserProvider>
-        <CategoriesProvider>
-          <CartProvider>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <BrowserRouter>
+          <Elements stripe={stripePromise}>
             <App />
-          </CartProvider>
-        </CategoriesProvider>
-      </UserProvider>
-    </BrowserRouter>
+          </Elements>
+        </BrowserRouter>
+      </PersistGate>
+    </Provider>
   </React.StrictMode>
 );
 

@@ -1,22 +1,25 @@
-import { Fragment, useContext } from "react";
+import { Fragment } from "react";
+import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 import { ReactComponent as CrwnLogo } from "../../assets/crown.svg";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
 import CartIcon from "../../components/cart-icon/cart-icon.component";
-import { CartContext } from "../../contexts/cart.context";
-import { UserContext } from "../../contexts/user.context";
-import { signOutUser } from "../../utils/firebase/firebase.utils";
-
+import { selectIsCartOpen } from "../../store/cart/cart.selector";
+import { selectCurrentUser } from "../../store/user/user.selector";
+import { useDispatch } from "react-redux/es/exports";
 import {
   LogoContainer,
   NavigationContainer,
   NavLink,
   NavLinksContainer,
 } from "./navigation.styles.jsx";
+import { signOutStart } from "../../store/user/user.action";
 
 const Navigation = () => {
-  const { currentUser } = useContext(UserContext);
-  const { isCartOpen } = useContext(CartContext);
+  const dispatch = useDispatch();
+  const currentUser = useSelector(selectCurrentUser);
+  const isCartOpen = useSelector(selectIsCartOpen);
+  const signOutUser = () => dispatch(signOutStart());
   return (
     <Fragment>
       <NavigationContainer>
@@ -34,7 +37,7 @@ const Navigation = () => {
           )}
           <CartIcon />
         </NavLinksContainer>
-        {/* is both are true return the last thing in this case CartDropdown */}
+        {/* if both are true return the last thing in this case CartDropdown */}
         {isCartOpen && <CartDropdown />}
       </NavigationContainer>
       <Outlet />
