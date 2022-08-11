@@ -1,5 +1,5 @@
 # Live Preview is available at
-Open [https://tubular-sfogliatella-3c3293.netlify.app/] to view it in your browser
+Open [https://tubular-sfogliatella-3c3293.netlify.app/](https://tubular-sfogliatella-3c3293.netlify.app/) to view it in your browser
 
 ## Getting Started with Create React App
 
