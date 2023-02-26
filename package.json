@@ -30,6 +30,7 @@
     "reselect": "^4.1.6",
     "stripe": "^10.1.0",
     "chart.js": "^3.6.0",
+    "react-chartjs-2": "^3.0.4",
     "styled-components": "^5.3.5",
     "typed-redux-saga": "^1.5.0",
     "typescript": "^4.7.4",
